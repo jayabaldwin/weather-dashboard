@@ -5,66 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
     <style> @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat&display=swap');</style>
 </head>
 
 
 <body>
-  <header class="container is-fullhd">
-    <h1 id="header">Weather Dashboard</h1>
+  <header class="is-fullwidth has-text-centered">
+    <h1 id="header" class="title py-5">Weather Dashboard</h1>
   </header>
 
+  <main class="section">
+    <div class="container">
 
+      <div class="columns">
 
+        <!-- Left column -->
+        <div id="city-search" class="column is-one-quarter">
+          <div class="box">
+            <h2>Search for a City:</h2>
+          <!-- input -->
 
+          <!-- search button -->
+          <button class="is-link is-outlined is-medium is-active">Search</button>
 
+          <!-- line break -->
 
+          <!-- buttons that present as full width boxes generated from local storage -->
 
-
-
-
-
-  <main>
-    <div class="container-fluid">
-      <div class="row content">
-        <div id="search-bar" class="col-4">
-          <h1>Search for a City</h1>
-            <form id="search-form" class="mb-2">
-              <input id="search-input" class="form-input w-100" type="text" placeholder="Search">
-              <button>Search</button>
-            </form>
-            <div id="search-history"></div>
+          </div>
         </div>
 
-        <div id="weather-board" class="col-8">
-          <div id="forecast-overview" class="row">
-            <h1>Test</h1>
-            <p>Hello</p>
+
+
+        <!-- Right column with a container and five sub-columns -->
+        <div id="weather-information" class="column">
+          <div id="selected-location" class="box">
+            <h2 id="city-date"></h2>
+            <p id="temp">Temp: </p>
+            <p id="wind">Wind: </p>
+            <p id="humidity">Humidity: </p>
           </div>
 
-          <div id="5-day" class="row">
-            <div id="day-1" class="col-md-2">
-              <p>Hello</p>
+          <!-- Title above the sub-columns -->
+          <div class="box">
+            <h2 class="subtitle is-4">5-Day Forecast</h2>
+          </div>
+
+          <!-- Five sub-columns underneath the right column -->
+          <div class="columns">
+            <!-- day 1 -->
+            <div class="column">
+              <div id="day-1" class="box">
+                <h2 id="5-day-date"></h2>
+                  <p id="5-day-temp">Temp: </p>
+                  <p id="5-day-wind">Wind: </p>
+                  <p id="5-day-humidity">Humidity: </p>
+              </div>
             </div>
-            <div id="day-2" class="col-md-2">
-              <p>Hello</p>
+
+            <!-- day 2 -->
+            <div class="column">
+              <div id="day-2" class="box">
+                <h2 id="5-day-date"></h2>
+                  <p id="5-day-temp">Temp: </p>
+                  <p id="5-day-wind">Wind: </p>
+                  <p id="5-day-humidity">Humidity: </p>
+              </div>
             </div>
-            <div id="day-3" class="col-md-2">
-              <p>Hello</p>
+
+            <!-- day 3 -->
+            <div class="column">
+              <div id="day-3" class="box">
+                <h2 id="5-day-date"></h2>
+                  <p id="5-day-temp">Temp: </p>
+                  <p id="5-day-wind">Wind: </p>
+                  <p id="5-day-humidity">Humidity: </p>
+              </div>
             </div>
-            <div id="day-4" class="col-md-2">
-              <p>Hello</p>
+
+            <!-- day 4 -->
+            <div class="column">
+              <div id="day-4" class="box">
+                <h2 id="5-day-date"></h2>
+                  <p id="5-day-temp">Temp: </p>
+                  <p id="5-day-wind">Wind: </p>
+                  <p id="5-day-humidity">Humidity: </p>
+              </div>
             </div>
-            <div id="day-5" class="col-md-2">
-              <p>Hello</p>
+
+            <!-- day 5 -->
+            <div class="column">
+              <div id="day-5" class="box">
+                <h2 id="5-day-date"></h2>
+                  <p id="5-day-temp">Temp: </p>
+                  <p id="5-day-wind">Wind: </p>
+                  <p id="5-day-humidity">Humidity: </p>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
     </div>
-    </main>
-
+  </main>
 
 
   <script
