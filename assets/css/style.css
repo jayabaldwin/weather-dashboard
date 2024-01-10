@@ -1,0 +1,19 @@
+:root {
+    --primary-color: #FBEAEB ;
+    --secondary-color: #2F3C7E ;
+    --accent-color: #EEA47F ;
+    --white: #ffffff;
+  }
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff;
+    color: #fff;
+}

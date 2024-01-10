@@ -5,13 +5,6 @@ var weatherKey = "735ee00c033a0c203ee912145178a36b";
 // the API url
 var searchUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${weatherKey}`;
 
-// var weatherApiStart = 'https://api.openweathermap.org/geo/1.0/direct?q=';
-// var weatherApiEnd = `&limit=5&appid=${weatherKey}`;
-// fetch(weatherApiStart + search + weatherApiEnd)
-
-function getWeatherData() {
-
-
 
 fetch(searchUrl)
   .then(function (response) {
@@ -40,6 +33,3 @@ fetch(searchUrl)
             }) 
 
 });
-}
-
-getWeatherData()
