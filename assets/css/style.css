@@ -1,12 +1,18 @@
 :root {
     --primary-color: #FBEAEB ;
-    --secondary-color: #2F3C7E ;
+    --secondary-color: #00539C;
     --accent-color: #EEA47F ;
     --white: #ffffff;
   }
 
 html {
     scroll-behavior: smooth;
+}
+
+/* used for previous search title */
+/* buttons will be generated as new elements from js */
+.hidden {
+    display: none;
 }
 
 /* styling */
@@ -19,6 +25,35 @@ body {
 }
 
 #header {
+    background: linear-gradient(to right, var(--secondary-color), #2F3C7E);
+    /* background-color: var(--secondary-color); */
+    color: #ffffff;
+}
+
+.days {
     background-color: var(--secondary-color);
-    color: var(--white);
+    color: white;
+}
+
+#selected-location {
+    border: solid 2px var(--secondary-color);
+}
+
+.hr-black {
+    border: solid 1px var(--secondary-color);
+}
+
+.button {
+    background-color: var(--accent-color);
+    color: #fffefe;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    box-shadow: inset 0px 0px 8px var(--primary-color) , 0 0 15px var(--accent-color);
+    background-color: var(--primary-color);
+    color: #000000;
 }
