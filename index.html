@@ -6,6 +6,7 @@
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="./assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/mystyles.scss" />
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
     <style> @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat&display=swap');</style>
 </head>
@@ -24,18 +25,27 @@
         <!-- Left column -->
         <div id="city-search" class="column is-one-quarter">
           <div class="box">
-            <h2>Search for a City:</h2>
           <!-- input -->
-
-          <!-- search button -->
-          <button class="is-link is-outlined is-medium is-active">Search</button>
-
+          <form>
+            <div class="field">
+              <label for="inputText" class="label">Search for a City:</label>
+              <div class="control">
+                <input class="input" type="text" id="inputText" name="inputText" placeholder="Type here">
+              </div>
+            </div>
+    
+            <!-- search button -->
+            <div class="field">
+              <div class="control">
+                <button class="button is-primary" type="submit">Search</button>
+              </div>
+          </form>
           <!-- line break -->
 
           <!-- buttons that present as full width boxes generated from local storage -->
-
           </div>
         </div>
+      </div>
 
 
 
