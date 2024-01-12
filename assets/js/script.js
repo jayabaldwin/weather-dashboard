@@ -33,3 +33,14 @@ fetch(searchUrl)
             }) 
 
 });
+
+
+// firstly figure out apis
+
+// data i need to collect
+// 1. when the search button is hit trigger the api call
+// 2. append the name of the search into the top box
+// 3. create a button using local storage of prior searched citys
+// 4. an alert if the city cannot be found
+// 5. automatically capitalise the first letter of the searched city
+// 6. pull todays date and display, iterate through following 5 days (6 total) and append to elements
