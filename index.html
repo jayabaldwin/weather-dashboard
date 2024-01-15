@@ -60,14 +60,15 @@
         <!-- Right column with a container and five sub-columns -->
         <div id="weather-information" class="column">
           <div id="selected-location" class="box">
-            <h2 id="city-date" class="subtitle">Byron Bay (11/01/2024)
-              <span class="icon is-small">
-                <i id="day-1-icon" class="fas fa-calendar-alt"></i> 
-              </span>
-            </h2>
-            <p id="day-1-temp">Temp: </p>
-            <p id="day-1-wind">Wind: </p>
-            <p id="day-1-humidity">Humidity: </p>
+            <div class="details">
+              <h2 id="city-date" class="subtitle"></h2>
+                <p id="temp-0"></p>
+                <p id="wind-0"></p>
+                <p id="humidity-0"></p>
+            </div>
+            <div class="icon">
+            <img src="./assets/images/clouds.png" alt="weather icon" class="weather-icon">
+            </div>
           </div>
 
           <!-- Title above the sub-columns -->
