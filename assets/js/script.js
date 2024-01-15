@@ -5,8 +5,7 @@ var APIKey = "735ee00c033a0c203ee912145178a36b";
 var city;
 
 // The API url
-var queryURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${APIkey}`;
-
+var queryURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${APIKey}`;
 
 
 
