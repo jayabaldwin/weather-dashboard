@@ -4,7 +4,7 @@ var citySearch = $('#inputText')
 
 // API Key
 var apiKey = "735ee00c033a0c203ee912145178a36b";
-var weatherUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&units=metric&appid=${apiKey}`;
+var weatherUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&limit=5&units=metric&appid=${apiKey}`;
 
 
   $.ajax({
@@ -35,3 +35,5 @@ var weatherUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${search}&limi
   .fail(function (error) {
     console.error('Error:', error);
   });
+
+  
