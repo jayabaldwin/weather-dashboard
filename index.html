@@ -31,7 +31,7 @@
             <div class="field">
               <label for="inputText" class="label">Search for a City:</label>
               <div class="control">
-                <input class="input" type="text" id="search-inputText" name="inputText" placeholder="Type here">
+                <input class="input city-input" type="text" id="inputText" name="inputText" placeholder="Type here">
               </div>
             </div>
     
@@ -40,22 +40,15 @@
               <div class="control">
                 <button id="search-btn" class="button is-fullwidth" type="submit">Search</button>
               </div>
-          </form>
-          
-          <!-- line break -->
-          <hr class="is-hidden-touch hr-black">
 
-            <!-- buttons that present as full width boxes generated from local storage -->          
-            <!-- <div class="field">
-              <label for="inputText" class="label">Previous Searches:</label>
-              <div class="control">
-                <button class="button is-fullwidth" type="submit"></button>
-              </div> -->
-            </div>
-          </div>
+              <div class="separator hidden"></div>
+
+              <div id="pastSearches"></div>  
+          </form>
         </div>
       </div>
-
+    </div>
+      
 
         <!-- Right column with a container and five sub-columns -->
         <div id="weather-information" class="column">

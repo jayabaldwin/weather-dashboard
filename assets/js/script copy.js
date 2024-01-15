@@ -1,4 +1,82 @@
 
+// URLS
+var weatherUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&units=metric&appid=${apiKey}`;
+
+fetch(weatherUrl)
+  .then(function (response) {
+    return response.json();
+  })
+    .then(function (data) {
+        var lat = data[0].lat;
+        var lon = data[0].lon;
+        var locationUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+
+        fetch(locationUrl)
+            .then(function (response) {
+            return response.json();
+        })  
+            .then(function (weatherDetails) {
+                    //this is where you have all your important data!
+                    console.log(weatherDetails)
+
+                    document.getElementById('city-date').innerHTML = data[0].name;
+                    document.getElementById('temp-0').innerHTML = 'Temperature: ' + data[0].main.temp;
+                    document.getElementById('wind-0').innerHTML = 'Wind: ' + data[0].wind.speed + 'km/h';
+                    document.getElementById('humidity-0').innerHTML = 'Humidity: ' + data[0].main.humidity + '%';
+
+
+                  //   for (var i = 0; i < weatherDetails.list; i++) {
+                  //      const pTag = document.createElement("p")
+                  //      pTag.innerHTMl = weatherDetails.list[0].main.temp
+                  //      pTag.append(someDiv)
+
+                  //  } 
+            }) 
+
+});
+
+
+// HTML Elements
+var searchInput = $('#inputText')
+var searchButton = $('#search-btn')
+
+// API Key
+const apiKey = "735ee00c033a0c203ee912145178a36b";
+
+// URLs
+// const weatherUrl = ``
+// const locationUrl = `` 
+
+// Weather information
+function getWeatherDetails() {
+
+
+}
+
+
+
+// City Coordinates
+function getCityCoordinates() {
+  const cityName = 'ballina'
+  // if (!cityName) return ; // Returns if input is empty 
+
+  const locationUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`;
+
+  fetch(locationUrl) 
+    .then(function (response) {
+      return response.json();
+  }) 
+    .then(function (data) {
+      if (!data.length) 
+      return alert(`No coordinates found for ${cityName}`)
+    const { name,   }
+  })
+};
+
+getCityCoordinates();
+
+// searchButton.addEventListener('click', getCityCoordinates);
+
 
 
 // Fetch request gets a list of weather info from API
@@ -69,7 +147,7 @@ const apiKey = "735ee00c033a0c203ee912145178a36b";
 const apiUrl = `https://api.openweathermap.org/data/2.5/weather?&q=${city}&units=metric&appid=${apiKey}`;
 
 
-
+const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}&units=metric`;
 
 // Fetch request gets a list of weather info from API
 async function getApi(){
@@ -156,36 +234,27 @@ fetch(queryURL)
     then(function (data) {
       console.log(data)
 
-    // .then(function (data) {
-    //     console.log(data[0].lon);
-    //     var lat = data[0].lat;
-    //     var lon = data[0].lon;
-    //     var weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${weatherKey}`;
+    .then(function (data) {
+        console.log(data[0].lon);
+        var lat = data[0].lat;
+        var lon = data[0].lon;
+        var weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${weatherKey}`;
 
         fetch(queryURL)
             .then(function (response) {
             return response.json();
         })  
             .then(function (response) {
-
-                    //this is where you have all your important data!
-                    // for(var i=0; i<response.list.length; i+=8){
-                    //   var dayCounter = 1;
-                    //   var tempDayOne = response.list[i].main.temp;
-                    //   console.log(tempDayOne);
-                    //   $('#day-' + dayCounter + '-temp').text(tempDayOne);
-                    //   dayCounter++;
           }
                     console.log(response)
                     
                     for (var i = 0; i < weatherInfo.list; i++) {
                        const pTag = document.createElement("p")
-                       pTag.innerHTMl = weatherInfo.list[0].main.temp
-                       pTag.append(someDiv)
+                       pTag.innerHTMl = weatherInfo.list[0].main.temp;
+            
 
-                   } 
-            }); 
-});
+                   }); 
+            });
 
 
 

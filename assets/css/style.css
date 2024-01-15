@@ -37,10 +37,15 @@ body {
 
 #selected-location {
     border: solid 2px var(--secondary-color);
+    display: flex;
+    justify-content: space-between;
 }
 
-.hr-black {
-    border: solid 1px var(--secondary-color);
+.separator {
+    height: 1px;
+    width: 100%;
+    margin: 25px 0;
+    background: #bbb
 }
 
 .button {
