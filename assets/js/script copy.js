@@ -1,3 +1,152 @@
+/ Get coordiantes based on latitude and longitude
+const getCityCoordinates = async () => {
+  const cityCoordRequestEndpoint = '';
+  const requestParams = `?api_key=${apiKey}`;
+  var urlToFetch = `${tmdbBaseUrl}${cityCoordRequestEndpoint}${requestParams}`;
+  
+  try {
+    const response = await fetch(urlToFetch);
+    if (response.ok) {
+      const jsonResponse = await response.json();
+      const location = jsonResponse.location;
+      console.log(location);
+      return location;
+    }
+  } catch (error) {
+    console.log(error);
+  } 
+}; 
+
+
+// Create HTML for movie title
+const createMovieTitle = (title) => {
+  const titleHeader = document.createElement('h1');
+  titleHeader.setAttribute('id', 'movieTitle');
+  titleHeader.innerHTML = title;
+
+  return titleHeader;
+};
+
+// Create HTML for movie overview
+const createMovieOverview = (overview) => {
+  const overviewParagraph = document.createElement('p');
+  overviewParagraph.setAttribute('id', 'movieOverview');
+  overviewParagraph.innerHTML = overview;
+
+  return overviewParagraph;
+};
+
+// Uses the DOM to create HTML to display the movie
+const displayMovie = (movieInfo) => {
+  const moviePosterDiv = document.getElementById('moviePoster');
+  const movieTextDiv = document.getElementById('movieText');
+  const likeBtn = document.getElementById('likeBtn');
+  const dislikeBtn = document.getElementById('dislikeBtn');
+
+  // Create HTML content containing movie info
+  const moviePoster = createMoviePoster(movieInfo.poster_path);
+  const titleHeader = createMovieTitle(movieInfo.title);
+  const overviewText = createMovieOverview(movieInfo.overview);
+
+  // Append title, poster, and overview to page
+  moviePosterDiv.appendChild(moviePoster);
+  movieTextDiv.appendChild(titleHeader);
+  movieTextDiv.appendChild(overviewText);
+
+  showBtns();
+  likeBtn.onclick = likeMovie;
+  dislikeBtn.onclick = dislikeMovie;
+};
+
+// Current day
+
+// Day 1
+
+// Day 2
+
+// Day 3
+
+// Day 4
+
+// Day 5
+
+// Use map to generate
+// Fetch request
+
+fetch(weatherUrl)
+  .then(response => response.json())
+  .then(data => {
+    var lat = data[0].lat;
+    var lon = data[0].lon;
+    var locationUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+    
+    return fetch(locationUrl);
+  })
+  .then(response => response.json())
+  .then(weatherDetails => {
+    // This is where you have all your important data!
+    console.log(weatherDetails);
+
+    // Update HTML elements
+    document.getElementById('city-date').innerHTML = weatherDetails.city.name;
+    document.getElementById('temp-0').innerHTML = 'Temperature: ' + weatherDetails.list[0].main.temp + '°c';
+    document.getElementById('wind-0').innerHTML = 'Wind: ' + weatherDetails.list[0].wind.speed + ' km/h';
+    document.getElementById('humidity-0').innerHTML = 'Humidity: ' + weatherDetails.list[0].main.humidity + '%';
+
+    // Convert wind speed to km/h
+    var windSpeedKMH = (weatherDetails.list[0].wind.speed * 3.6).toFixed(2);
+    document.getElementById('wind-0').innerHTML = 'Wind: ' + windSpeedKMH + ' km/h';
+
+    document.getElementById('humidity-0').innerHTML = 'Humidity: ' + weatherDetails.list[0].main.humidity + '%';
+    
+    // Set the weather icon based on weather conditions
+    setWeatherIcon(weatherDetails.list[0].weather[0].main);
+
+    // Function to set the weather icon
+  function setWeatherIcon(weatherCondition) {
+    var weatherIcon = document.
+    if (weatherCondition == 'Clouds') {
+      weatherIcon.src = 'assets/images/clouds.png';
+    } else if (weatherCondition == 'Clear') {
+      weatherIcon.src = 'assets/images/clear.png';
+    } else if (weatherCondition == 'Rain') {
+      weatherIcon.src = 'assets/images/rain.png';
+    } else if (weatherCondition == 'Drizzle') {
+      weatherIcon.src = 'assets/images/drizzle.png';
+    } else if (weatherCondition == 'Mist') {
+      weatherIcon.src = 'assets/images/mist.png';
+    } else if (weatherCondition == 'Snow') {
+      weatherIcon.src = 'assets/images/snow.png';
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+// Function to set the weather icon
+function setWeatherIcon(weatherCondition) {
+  if (weatherCondition == 'Clouds') {
+    weatherIcon.src = 'assets/images/clouds.png';
+  } else if (weatherCondition == 'Clear') {
+    weatherIcon.src = 'assets/images/clear.png';
+  } else if (weatherCondition == 'Rain') {
+    weatherIcon.src = 'assets/images/rain.png';
+  } else if (weatherCondition == 'Drizzle') {
+    weatherIcon.src = 'assets/images/drizzle.png';
+  } else if (weatherCondition == 'Mist') {
+    weatherIcon.src = 'assets/images/mist.png';
+  } else if (weatherCondition == 'Snow') {
+    weatherIcon.src = 'assets/images/snow.png';
+  }
+}
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+
+
+
 
 // URLS
 var weatherUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&units=metric&appid=${apiKey}`;
