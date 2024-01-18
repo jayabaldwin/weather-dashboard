@@ -4,24 +4,27 @@
 // var baseUrl = "https://api.openweathermap.org";
 
 
-// // Fetching the users city input prefernece
-// function fetchCoords () {
-//   var apiUrl = `${baseUrl}/geo/1.0/direct?q=ballina&limit=5&units=metric&appid=${apiKey}`;
+// Fetching the users city input prefernece
+function fetchCoords () {
+  var apiUrl = `${baseUrl}/geo/1.0/direct?q=ballina&limit=5&units=metric&appid=${apiKey}`;
 
-//   fetch(apiUrl)
-//     .then(function (res) {
-//       return res.json();
-//   })
-//     .then(function (data){
-//       renderItems(data);
-//   })
-//     .catch(function (error) {
-//       console.log(error);
-//   });
+  fetch(apiUrl)
+    .then(function (res) {
+      return res.json();
+  })
+    .then(function (data){
+      renderItems(data);
+  })
+    .catch(function (error) {
+      console.log(error);
+  });
+}
 
-//   function renderItems (data) {
-//     console.log(data);
-//   }
+
+
+  function renderItems (data) {
+    console.log(data);
+  }
   
 //   var lat = data[0].lat;
 //   var lon = data[0].lon;
@@ -44,24 +47,24 @@
 
 
 // Fetching the weather data through the Weather Geolocation endpoint, based on the users city input 
-// function fetchWeather() {
-//   var lat = data[0].lat;
-//   var lon = data[0].lon;
+function fetchWeather() {
+  var lat = data[0].lat;
+  var lon = data[0].lon;
 
-//   var apiUrl = `${baseUrl}/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  var apiUrl = `${baseUrl}/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
-//   fetch(apiUrl)
-//     .then(function (res) {
-//       return res.json();
-//   })
-//     .then(function (data){
-//       renderItems(data);
+  fetch(apiUrl)
+    .then(function (res) {
+      return res.json();
+  })
+    .then(function (data){
+      renderItems(data);
 
-//   })
-//     .catch(function (error) {
-//       console.log(error);
-//   })
-// };
+  })
+    .catch(function (error) {
+      console.log(error);
+  })
+};
 
 // fetchWeather();
 

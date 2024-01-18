@@ -7,14 +7,20 @@ const searchButton = document.getElementById('search-btn');
 const pastSearches = document.getElementById('past-searches');
 const searchForm = document.querySelector('#form');
 
+var search = searchInput.value;
+
 // do a whole lot more of these for the columns
+
+
+
+
 
 // API Key
 var apiKey = "735ee00c033a0c203ee912145178a36b";
 var baseUrl = "https://api.openweathermap.org";
 
-// Fetching the users' city input preference
-function fetchWeather(search) {
+// Fetching the users' location to be able to generate weather data
+function fetchLocation() {
   var apiUrl = `${baseUrl}/geo/1.0/direct?q=ballina&limit=5&units=metric&appid=${apiKey}`;
 
   fetch(apiUrl)
@@ -26,49 +32,36 @@ function fetchWeather(search) {
       var lon = data[0].lon;
 
       var weatherApiUrl = `${baseUrl}/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
-      // Fetching the geo coordinates of the search, by using its lat and lon properties
       return fetch(weatherApiUrl);
     })
     .then(function (res) {
       return res.json();
     })
     .then(function (weatherData) {
-      renderItems(weatherData);
+      weatherResults (weatherData);
     })
     .catch(function (error) {
       console.log(error);
     });
+    // Render items logic here
   };
 
-
-function renderItems (data) {
-  console.log(data);
-  // // functions for header temp etc and pass through render items
-
-  // display and construct html here
-  // append to html or create <p> elements
-  // start by creating parent div with class .column, then id day-2 etc etc in that same structure
-  // then append to columns div
-  // loop through arrays - data.main.temp etc etc 
+// Data collected from the object
+function weatherResults(weatherData) {
+  console.log(weatherData);
 }
 
-// fetchWeather();
+
+fetchLocation();
+
 
 function handleSearchFormSubmit (event) {
   event.preventDefault();
-  var search = searchInput.value;
+  // var search = searchInput.value;
 }
 
-// handle search form submit event
-searchForm.addEventListener('submit', handleSearchFormSubmit);
+// call fetch weather function here with search as parameter
+// interpolate the api url in the fetch weather function
 
-
-
-//   console.log(search);
-//   // call fetch weather function here with search as parameter
-//   // interpolate the api url in the fetch weather function
-  
-// };
-
-// handle search form submit event
+// Event lister upon submitting the search form
 searchForm.addEventListener('submit', handleSearchFormSubmit);
