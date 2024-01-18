@@ -1,3 +1,87 @@
+
+// // API Key
+// var apiKey = "735ee00c033a0c203ee912145178a36b";
+// var baseUrl = "https://api.openweathermap.org";
+
+
+// // Fetching the users city input prefernece
+// function fetchCoords () {
+//   var apiUrl = `${baseUrl}/geo/1.0/direct?q=ballina&limit=5&units=metric&appid=${apiKey}`;
+
+//   fetch(apiUrl)
+//     .then(function (res) {
+//       return res.json();
+//   })
+//     .then(function (data){
+//       renderItems(data);
+//   })
+//     .catch(function (error) {
+//       console.log(error);
+//   });
+
+//   function renderItems (data) {
+//     console.log(data);
+//   }
+  
+//   var lat = data[0].lat;
+//   var lon = data[0].lon;
+
+//   var apiUrl = `${baseUrl}/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+
+//   fetch(apiUrl)
+//     .then(function (res) {
+//       return res.json();
+//   })
+//     .then(function (data){
+//       renderItems(data);
+
+//   })
+//     .catch(function (error) {
+//       console.log(error);
+//   });
+
+// };
+
+
+// Fetching the weather data through the Weather Geolocation endpoint, based on the users city input 
+// function fetchWeather() {
+//   var lat = data[0].lat;
+//   var lon = data[0].lon;
+
+//   var apiUrl = `${baseUrl}/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+
+//   fetch(apiUrl)
+//     .then(function (res) {
+//       return res.json();
+//   })
+//     .then(function (data){
+//       renderItems(data);
+
+//   })
+//     .catch(function (error) {
+//       console.log(error);
+//   })
+// };
+
+// fetchWeather();
+
+// above to fetchCoord function and pass to fetchWeather function
+
+// fetch(weatherUrl)
+//   .then(response => response.json())
+//   .then(data => {
+//     var lat = data[0].lat;
+//     var lon = data[0].lon;
+//     var locationUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+    
+//     return fetch(locationUrl);
+//   })
+//   .then(response => response.json())
+//   .then(weatherDetails => {
+//     // This is where you have all your important data!
+//     console.log(weatherDetails);
+
+
 // PROJECT JS
 const tmdbKey = 'f9eca978d834236e3eaffb9f8d4c55df';
 const tmdbBaseUrl = 'https://api.themoviedb.org/3';

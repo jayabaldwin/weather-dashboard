@@ -87,11 +87,36 @@ fetch(weatherUrl)
     // This is where you have all your important data!
     console.log(weatherDetails);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     // Update HTML elements
     document.getElementById('city-date').innerHTML = weatherDetails.city.name;
     document.getElementById('temp-0').innerHTML = 'Temperature: ' + weatherDetails.list[0].main.temp + '°c';
     document.getElementById('wind-0').innerHTML = 'Wind: ' + weatherDetails.list[0].wind.speed + ' km/h';
     document.getElementById('humidity-0').innerHTML = 'Humidity: ' + weatherDetails.list[0].main.humidity + '%';
+
+
+
+
+
+
+
+
+
+
 
     // Convert wind speed to km/h
     var windSpeedKMH = (weatherDetails.list[0].wind.speed * 3.6).toFixed(2);
