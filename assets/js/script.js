@@ -90,6 +90,9 @@ function handleSearchFormSubmit (event) {
   event.preventDefault();
   var search = event.target[0].value;
   fetchLocation(search);
+
+  document.getElementById('city-search').classList.remove('before-search');
+  document.getElementById('weather-information').classList.remove('hidden');
 }
 
 // Event lister upon submitting the search form

@@ -15,6 +15,12 @@ html {
     display: none;
 }
 
+.before-search {
+    display: flex;
+    justify-content: center;
+}
+
+
 /* styling */
 body {
     margin: 0;
