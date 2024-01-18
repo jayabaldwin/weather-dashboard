@@ -131,6 +131,8 @@ function saveToLocalStorage(search) {
   }
 }
 
+  // Alert if city is submitted empty or with an invalid city
+
   // Classes to make weather dashboard visible after pressing search
   document.getElementById('city-search').classList.remove('before-search');
   document.getElementById('weather-information').classList.remove('hidden');
