@@ -54,7 +54,7 @@ function weatherResults(weatherData) {
   var windspeed = Math.ceil((weatherData.list[0].wind.speed)*3.6) // update to km/hr
   var dateFormat = dayjs(weatherData.list[0].dt_txt).format('MMM D, YYYY'); // format the date
 
-  updateWeatherElement('city-date', '', `${weatherData.city.name} ${dateFormat}`);
+  updateWeatherElement('city-date', '', `${weatherData.city.name} (${dateFormat})`);
   updateWeatherElement('temp-0', 'Temperature:', `${tempRoundUp}°C`);
   updateWeatherElement('wind-0', 'Wind:', `${windspeed} km/h`);
   updateWeatherElement('humidity-0', 'Humidity:', `${weatherData.list[0].main.humidity}%`);
@@ -103,32 +103,38 @@ function currentDayImage(weatherCondition) {
   }
 }
 
-// Storing searches and appending them to buttons
-function previousSearches() {
-  
-
-}
-
 // Submission of form
 function handleSearchFormSubmit (event) {
   event.preventDefault();
   var search = event.target[0].value;
   fetchLocation(search);
+  saveToLocalStorage(search);
 
-  // Save to local storage
-  localStorage.setItem("searchedCity", search);
+// Save to local storage
+function saveToLocalStorage(search) {
+  var newCity = JSON.stringify(search);
+  var previouslySearched = localStorage.getItem("searchedCity");
 
-   // If city has not already been searched, set a cityName in the key-value pair
-   document.getElementById('past-searches');
-   // Use localStorage.getItem() and setAttribute
+  var pastSearches = document.getElementById('past-searches');
 
-   // Generates buttons from local storage, create buttons and append to div, set buttons class to the same as the other one
+  if (newCity !== previouslySearched) {
+    // Save new city to local storage
+    localStorage.setItem("searchedCity", newCity);
 
+    // Create a button for the new city
+    const newCityButton = document.createElement('button');
+    newCityButton.classList.add('new-button');
+    newCityButton.textContent = search;
 
+    // Append button to pastSearches element
+    pastSearches.appendChild(newCityButton);
+  }
+}
 
   // Classes to make weather dashboard visible after pressing search
   document.getElementById('city-search').classList.remove('before-search');
   document.getElementById('weather-information').classList.remove('hidden');
+  document.getElementById('separator').classList.remove('hidden');
 }
 
 // Event lister upon submitting the search form
