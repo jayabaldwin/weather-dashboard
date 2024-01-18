@@ -1,3 +1,43 @@
+// function weatherResults(weatherData) {
+  
+//   // Update HTML elements
+//   document.getElementById('city-date').innerHTML = weatherData.city.name + ' (' + weatherData.list[0].dt_txt + ')';
+//   document.getElementById('temp-0').innerHTML = 'Temperature: ' + weatherData.list[0].main.temp + '°c';
+//   document.getElementById('wind-0').innerHTML = 'Wind: ' + weatherData.list[0].wind.speed + ' km/h';
+//   document.getElementById('humidity-0').innerHTML = 'Humidity: ' + weatherData.list[0].main.humidity + '%';
+
+//   // Day 1
+//   document.getElementById('day-1-date').innerHTML = ' (' + weatherData.list[8].dt_txt + ')';
+//   document.getElementById('temp-1').innerHTML = 'Temp: ' + weatherData.list[8].main.temp + '°c';
+//   document.getElementById('wind-1').innerHTML = 'Wind: ' + weatherData.list[8].wind.speed + ' km/h';
+//   document.getElementById('humidity-1').innerHTML = 'Humidity: ' + weatherData.list[8].main.humidity + '%';
+
+//   // Day 2
+//   document.getElementById('day-2-date').innerHTML = ' (' + weatherData.list[16].dt_txt + ')';
+//   document.getElementById('temp-2').innerHTML = 'Temp: ' + weatherData.list[16].main.temp + '°c';
+//   document.getElementById('wind-2').innerHTML = 'Wind: ' + weatherData.list[16].wind.speed + ' km/h';
+//   document.getElementById('humidity-2').innerHTML = 'Humidity: ' + weatherData.list[16].main.humidity + '%';
+
+//   // Day 3
+//   document.getElementById('day-3-date').innerHTML = ' (' + weatherData.list[24].dt_txt + ')';
+//   document.getElementById('temp-3').innerHTML = 'Temp: ' + weatherData.list[24].main.temp + '°c';
+//   document.getElementById('wind-3').innerHTML = 'Wind: ' + weatherData.list[24].wind.speed + ' km/h';
+//   document.getElementById('humidity-3').innerHTML = 'Humidity: ' + weatherData.list[24].main.humidity + '%';
+
+//   // Day 4
+//   document.getElementById('day-4-date').innerHTML = + ' (' + weatherData.list[32].dt_txt + ')';
+//   document.getElementById('temp-4').innerHTML = 'Temp: ' + weatherData.list[32].main.temp + '°c';
+//   document.getElementById('wind-4').innerHTML = 'Wind: ' + weatherData.list[32].wind.speed + ' km/h';
+//   document.getElementById('humidity-4').innerHTML = 'Humidity: ' + weatherData.list[32].main.humidity + '%';
+
+//   console.log(weatherData);
+// }
+
+
+
+
+
+
 / Get coordiantes based on latitude and longitude
 const getCityCoordinates = async () => {
   const cityCoordRequestEndpoint = '';

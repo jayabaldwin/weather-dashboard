@@ -35,7 +35,7 @@ body {
     color: white;
 }
 
-#selected-location {
+#current-day {
     border: solid 2px var(--secondary-color);
     display: flex;
     justify-content: space-between;

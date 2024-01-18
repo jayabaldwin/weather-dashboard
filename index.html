@@ -52,7 +52,7 @@
 
         <!-- Right column with a container and five sub-columns -->
         <div id="weather-information" class="column">
-          <div id="selected-location" class="box">
+          <div id="current-day" class="box">
             <div class="details">
               <h2 id="city-date" class="subtitle"></h2>
                 <p id="temp-0"></p>
@@ -71,18 +71,23 @@
 
           <!-- Five sub-columns underneath the right column -->
           <div class="columns">
+            <!-- day 1 -->
+            <div class="column">
+              <div id="day-1" class="days box">
+                <h2 id="day-1-date">Date</h2>
+                  <p id="temp-1">Temp: </p>
+                  <p id="wind-1">Wind: </p>
+                  <p id="humidity-1">Humidity: </p>
+              </div>
+            </div>
+
             <!-- day 2 -->
             <div class="column">
               <div id="day-2" class="days box">
                 <h2 id="day-2-date">Date</h2>
-
-                    <span class="icon is-small">
-                      <i id="day-2-icon" class="fas fa-calendar-alt"></i> 
-                    </span>
-
-                  <p id="day-2-temp">Temp: </p>
-                  <p id="day-2-wind">Wind: </p>
-                  <p id="day-2-humidity">Humidity: </p>
+                  <p id="temp-2">Temp: </p>
+                  <p id="wind-2">Wind: </p>
+                  <p id="humidity-2">Humidity: </p>
               </div>
             </div>
 
@@ -90,14 +95,9 @@
             <div class="column">
               <div id="day-3" class="days box">
                 <h2 id="day-3-date">Date</h2>
-
-                    <span class="icon is-small">
-                      <i id="day-3-icon" class="fas fa-calendar-alt"></i> 
-                    </span>
-
-                  <p id="day-3-temp">Temp: </p>
-                  <p id="day-3-wind">Wind: </p>
-                  <p id="day-3-humidity">Humidity: </p>
+                  <p id="temp-3">Temp: </p>
+                  <p id="wind-3">Wind: </p>
+                  <p id="humidity-3">Humidity: </p>
               </div>
             </div>
 
@@ -105,19 +105,14 @@
             <div class="column">
               <div id="day-4" class="days box">
                 <h2 id="day-4-date">Date</h2>
-
-                    <span class="icon is-small">
-                      <i id="day-4-icon" class="fas fa-calendar-alt"></i> 
-                    </span>
-
-                  <p id="day-4-temp">Temp: </p>
-                  <p id="day-4-wind">Wind: </p>
-                  <p id="day-4-humidity">Humidity: </p>
+                  <p id="temp-4">Temp: </p>
+                  <p id="wind-4">Wind: </p>
+                  <p id="humidity-4">Humidity: </p>
               </div>
             </div>
 
             <!-- day 5 -->
-            <div class="column">
+            <!-- <div class="column">
               <div id="day-5" class="days box">
                 <h2 id="day-5-date">Date</h2>
 
@@ -125,26 +120,11 @@
                       <i id="day-5-icon" class="fas fa-calendar-alt"></i> 
                     </span>
 
-                  <p id="day-5-temp">Temp: </p>
-                  <p id="day-5-wind">Wind: </p>
-                  <p id="day-5-humidity">Humidity: </p>
+                  <p id="temp-5">Temp: </p>
+                  <p id="wind-5">Wind: </p>
+                  <p id="humidity-5">Humidity: </p>
               </div>
-            </div>
-
-            <!-- day 6 -->
-            <div class="column">
-              <div id="day-6" class="days box">
-                <h2 id="day-6-date">Date</h2>
-
-                    <span class="icon is-small">
-                      <i id="day-6-icon" class="fas fa-calendar-alt"></i> 
-                    </span>
-
-                  <p id="day-6-temp">Temp: </p>
-                  <p id="day-6-wind">Wind: </p>
-                  <p id="day-6-humidity">Humidity: </p>
-              </div>
-            </div>
+            </div> -->
 
           </div>
         </div>

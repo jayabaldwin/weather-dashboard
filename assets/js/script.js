@@ -7,6 +7,25 @@ const searchButton = document.getElementById('search-btn');
 const pastSearches = document.getElementById('past-searches');
 const searchForm = document.querySelector('#form');
 
+// Current Day
+const currentDay = document.getElementById('#current-day');
+
+// Day 1
+const day1 = document.getElementById('#day-1');
+
+// Day 2
+const day2 = document.getElementById('#day-2');
+
+// Day 3
+const day3 = document.getElementById('#day-3');
+
+// Day 4
+const day4 = document.getElementById('#day-4');
+
+// Day 5
+const day5 = document.getElementById('#day-5');
+
+
 var search = searchInput.value;
 
 // do a whole lot more of these for the columns
@@ -31,7 +50,7 @@ function fetchLocation() {
       var lat = data[0].lat;
       var lon = data[0].lon;
 
-      var weatherApiUrl = `${baseUrl}/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+      var weatherApiUrl = `${baseUrl}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
       return fetch(weatherApiUrl);
     })
     .then(function (res) {
@@ -43,11 +62,37 @@ function fetchLocation() {
     .catch(function (error) {
       console.log(error);
     });
-    // Render items logic here
   };
 
-// Data collected from the object
+// Sets up ability to update each forecast day without repetition
+function updateWeatherElement(id, value) {
+  document.getElementById(id).innerHTML = value;
+}
+
+// The date extracted from the array is connected to the time increments, this split method removes that
+function separateDateAndTime(dateTimeString) {
+  const [date, time] = dateTimeString.split(' ');
+  return { date, time };
+}
+
 function weatherResults(weatherData) {
+  // Update current day
+  const { date: currentDate, time: currentTime } = separateDateAndTime(weatherData.list[0].dt_txt);
+  updateWeatherElement('city-date', `${weatherData.city.name} (${currentDate} ${currentTime})`);
+  updateWeatherElement('temp-0', `Temperature: ${weatherData.list[0].main.temp}°C`);
+  updateWeatherElement('wind-0', `Wind: ${weatherData.list[0].wind.speed} km/h`);
+  updateWeatherElement('humidity-0', `Humidity: ${weatherData.list[0].main.humidity}%`);
+
+  // Update subsequent days
+  for (let i = 1; i <= 4; i++) {
+    const index = i * 8;
+    const { date, time } = separateDateAndTime(weatherData.list[index].dt_txt);
+    updateWeatherElement(`day-${i}-date`, `${date} ${time}`);
+    updateWeatherElement(`temp-${i}`, `Temp: ${weatherData.list[index].main.temp}°C`);
+    updateWeatherElement(`wind-${i}`, `Wind: ${weatherData.list[index].wind.speed} km/h`);
+    updateWeatherElement(`humidity-${i}`, `Humidity: ${weatherData.list[index].main.humidity}%`);
+  }
+
   console.log(weatherData);
 }
 
