@@ -71,13 +71,21 @@ function weatherResults(weatherData) {
 
     var weatherImage = document.getElementById('weather-icon');
 
-    if(`${weatherData.list[index].weather[0].main}` == "Rain") {
-      
+    if(`${weatherData.list[index].weather[0].main}` === "Rain") {
+      weatherImage.setAttribute("src", "./assets/images/rain.png");
+    } 
+    else if (`${weatherData.list[index].weather[0].main}` === "Clouds") {
+      weatherImage.setAttribute("src", "./assets/images/clouds.png")
     }
-  }
-
-
-  console.log(weatherData);
+    else if (`${weatherData.list[index].weather[0].main}` === "Mist") {
+      weatherImage.setAttribute("src", "./assets/images/mist.png")
+    }
+    else if (`${weatherData.list[index].weather[0].main}` === "Snow") {
+      weatherImage.setAttribute("src", "./assets/images/mist.png")
+    } else {
+      weatherImage.setAttribute("src", "./assets/images/clear.png")
+    };
+  };
 }
 
 // Storing searches and appending them to buttons
