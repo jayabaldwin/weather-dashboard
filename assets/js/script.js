@@ -48,6 +48,10 @@ function separateDateAndTime() {
 function windSpeed() {
 }
 
+// Round up temp to nearest integer
+function tempRoundUp() {
+}
+
 // Sets up ability to update each forecast day without repetition
 function updateWeatherElement(id, label, value) {
   document.getElementById(id).innerHTML = `${label} ${value}`;
@@ -69,22 +73,22 @@ function weatherResults(weatherData) {
     updateWeatherElement(`wind-${i}`, 'Wind:', `${weatherData.list[index].wind.speed} km/h`);
     updateWeatherElement(`humidity-${i}`, 'Humidity:', `${weatherData.list[index].main.humidity}%`);
 
-    var weatherImage = document.getElementById('weather-icon');
+    // var weatherImage = document.getElementById('weather-icon');
 
-    if(`${weatherData.list[index].weather[0].main}` === "Rain") {
-      weatherImage.setAttribute("src", "./assets/images/rain.png");
-    } 
-    else if (`${weatherData.list[index].weather[0].main}` === "Clouds") {
-      weatherImage.setAttribute("src", "./assets/images/clouds.png")
-    }
-    else if (`${weatherData.list[index].weather[0].main}` === "Mist") {
-      weatherImage.setAttribute("src", "./assets/images/mist.png")
-    }
-    else if (`${weatherData.list[index].weather[0].main}` === "Snow") {
-      weatherImage.setAttribute("src", "./assets/images/mist.png")
-    } else {
-      weatherImage.setAttribute("src", "./assets/images/clear.png")
-    };
+    // if(`${weatherData.list[index].weather[0].main}` === "Rain") {
+    //   weatherImage.setAttribute("src", "./assets/images/rain.png");
+    // } 
+    // else if (`${weatherData.list[index].weather[0].main}` === "Clouds") {
+    //   weatherImage.setAttribute("src", "./assets/images/clouds.png")
+    // }
+    // else if (`${weatherData.list[index].weather[0].main}` === "Mist") {
+    //   weatherImage.setAttribute("src", "./assets/images/mist.png")
+    // }
+    // else if (`${weatherData.list[index].weather[0].main}` === "Snow") {
+    //   weatherImage.setAttribute("src", "./assets/images/mist.png")
+    // } else {
+    //   weatherImage.setAttribute("src", "./assets/images/clear.png")
+    // };
   };
 }
 
@@ -99,6 +103,17 @@ function handleSearchFormSubmit (event) {
   var search = event.target[0].value;
   fetchLocation(search);
 
+  // Save to local storage
+  localStorage.setItem("searchedCity", search);
+
+  // If city has not already been searched, set a cityName in the key-value pair
+  // Create button and appen to dive
+  // Set button to same class as other button
+  document.getElementById('past-searches');
+  // Use localStorage.getItem() and setAttribute
+
+
+  // Classes to make weather dashboard visible after pressing search
   document.getElementById('city-search').classList.remove('before-search');
   document.getElementById('weather-information').classList.remove('hidden');
 }
