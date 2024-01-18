@@ -33,24 +33,13 @@ function fetchLocation(search) {
     })
     .then(function (weatherData) {
       weatherResults (weatherData);
+      console.log(weatherData);
     })
     .catch(function (error) {
       console.log(error);
     });
   };
 
-
-// Find way to remove the time element from the string with a split() method
-function separateDateAndTime() {
-}
-
-// How do I multiply wind by 3.6 to generate km/hr instead of m/s
-function windSpeed() {
-}
-
-// Round up temp to nearest integer
-function tempRoundUp() {
-}
 
 // Sets up ability to update each forecast day without repetition
 function updateWeatherElement(id, label, value) {
@@ -59,46 +48,69 @@ function updateWeatherElement(id, label, value) {
 
 // Data collected from the object
 function weatherResults(weatherData) {
+
   // Update current day
-  updateWeatherElement('city-date', '', `${weatherData.city.name} (${weatherData.list[0].dt_txt})`);
-  updateWeatherElement('temp-0', 'Temperature:', `${weatherData.list[0].main.temp}°C`);
-  updateWeatherElement('wind-0', 'Wind:', `${weatherData.list[0].wind.speed} km/h`);
+  var tempRoundUp = Math.ceil(weatherData.list[0].main.temp); // temp is rounded up to nearest degree
+  var windspeed = Math.ceil((weatherData.list[0].wind.speed)*3.6) // update to km/hr
+  var dateFormat = dayjs(weatherData.list[0].dt_txt).format('MMM D, YYYY'); // format the date
+
+  updateWeatherElement('city-date', '', `${weatherData.city.name} ${dateFormat}`);
+  updateWeatherElement('temp-0', 'Temperature:', `${tempRoundUp}°C`);
+  updateWeatherElement('wind-0', 'Wind:', `${windspeed} km/h`);
   updateWeatherElement('humidity-0', 'Humidity:', `${weatherData.list[0].main.humidity}%`);
+  document.getElementById('weather-icon').setAttribute("src", currentDayImage(`${weatherData.list[0].weather[0].main}`));
+
 
   // Update subsequent days
   for (let i = 1; i <= 4; i++) {
     const index = i * 8;
-    updateWeatherElement(`day-${i}-date`, '', `(${weatherData.list[index].dt_txt})`);
-    updateWeatherElement(`temp-${i}`, 'Temp:', `${weatherData.list[index].main.temp}°C`);
-    updateWeatherElement(`wind-${i}`, 'Wind:', `${weatherData.list[index].wind.speed} km/h`);
+    
+    var tempRoundUp = Math.ceil(weatherData.list[index].main.temp); // temp is rounded up to nearest degree
+    var windspeed = Math.ceil((weatherData.list[index].wind.speed)*3.6) // update to km/hr
+    var dateFormat = dayjs(weatherData.list[index].dt_txt).format('MMM D, YYYY'); // format the date
+    
+    updateWeatherElement(`day-${i}-date`, '', `${dateFormat}`);
+    updateWeatherElement(`temp-${i}`, 'Temp:', `${tempRoundUp}°C`);
+    updateWeatherElement(`wind-${i}`, 'Wind:', `${windspeed} km/h`);
     updateWeatherElement(`humidity-${i}`, 'Humidity:', `${weatherData.list[index].main.humidity}%`);
 
-    // var weatherImage = document.getElementById('weather-icon');
+    var weatherImage = document.getElementById('weather-icon-' + i);
 
-    // if(`${weatherData.list[index].weather[0].main}` === "Rain") {
-    //   weatherImage.setAttribute("src", "./assets/images/rain.png");
-    // } 
-    // else if (`${weatherData.list[index].weather[0].main}` === "Clouds") {
-    //   weatherImage.setAttribute("src", "./assets/images/clouds.png")
-    // }
-    // else if (`${weatherData.list[index].weather[0].main}` === "Mist") {
-    //   weatherImage.setAttribute("src", "./assets/images/mist.png")
-    // }
-    // else if (`${weatherData.list[index].weather[0].main}` === "Snow") {
-    //   weatherImage.setAttribute("src", "./assets/images/mist.png")
-    // } else {
-    //   weatherImage.setAttribute("src", "./assets/images/clear.png")
-    // };
+    console.log(`${weatherData.list[index].weather[0].main}`);
+    weatherImage.setAttribute("src", currentDayImage(`${weatherData.list[index].weather[0].main}`))
   };
+}
+
+// Updating weather icons based on condition
+function currentDayImage(weatherCondition) {
+  switch (weatherCondition) {
+    case "Rain":
+      return "./assets/images/rain.png"
+      break;
+    case "Clouds":
+      return "./assets/images/clouds.png"
+      break;
+    case "Mist":
+      return "./assets/images/mist.png"
+      break;
+    case "Snow":
+      return "./assets/images/snow.png"
+      break;
+  
+    default:
+      return "./assets/images/clear.png"
+      break;
+  }
 }
 
 // Storing searches and appending them to buttons
 function previousSearches() {
+  
+
 }
 
 // Submission of form
 function handleSearchFormSubmit (event) {
-  // console.log(event.target[0].value);
   event.preventDefault();
   var search = event.target[0].value;
   fetchLocation(search);
@@ -106,11 +118,12 @@ function handleSearchFormSubmit (event) {
   // Save to local storage
   localStorage.setItem("searchedCity", search);
 
-  // If city has not already been searched, set a cityName in the key-value pair
-  // Create button and appen to dive
-  // Set button to same class as other button
-  document.getElementById('past-searches');
-  // Use localStorage.getItem() and setAttribute
+   // If city has not already been searched, set a cityName in the key-value pair
+   document.getElementById('past-searches');
+   // Use localStorage.getItem() and setAttribute
+
+   // Generates buttons from local storage, create buttons and append to div, set buttons class to the same as the other one
+
 
 
   // Classes to make weather dashboard visible after pressing search
