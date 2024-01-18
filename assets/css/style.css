@@ -15,6 +15,12 @@ html {
     display: none;
 }
 
+.before-search {
+    display: flex;
+    justify-content: center;
+}
+
+
 /* styling */
 body {
     margin: 0;
@@ -35,7 +41,7 @@ body {
     color: white;
 }
 
-#selected-location {
+#current-day {
     border: solid 2px var(--secondary-color);
     display: flex;
     justify-content: space-between;
