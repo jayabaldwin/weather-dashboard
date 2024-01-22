@@ -1,12 +1,12 @@
 // YOURE JUST GRABBING DATA FROM THE API AND DISPLAYING IT
 // STOP OVERTHINKING, YOU GOT THIS!
 
-// HTML Elements
-const searchInput = document.getElementById('inputText');
-const searchButton = document.getElementById('search-btn');
-const pastSearches = document.getElementById('past-searches');
-const searchForm = document.querySelector('#form');
-var search = '';
+// HTML Element
+// const searchInput = document.getElementById('inputText');
+// const searchButton = document.getElementById('search-btn');
+// const pastSearches = document.getElementById('past-searches');
+// const searchForm = document.querySelector('#form');
+// var search = '';
 
 // API Key
 var apiKey = "735ee00c033a0c203ee912145178a36b";
@@ -116,11 +116,10 @@ window.onload = () => {
     // Retrieve the array of stored cities
     var storedCities = JSON.parse(localStorage.getItem("storedCities"));
 
-    // Get the element where you want to append the buttons
+    // Gets the element where the buttons will be appended to
     var pastSearches = document.getElementById('past-searches');
 
-    if (search !== '') {
-      // Loop through the array and create a button for each city
+    // Loop through the array and create a button for each city
     storedCities.forEach(function(value) {
       const newCityButton = document.createElement('button');
       newCityButton.classList.add('new-button');
@@ -128,8 +127,7 @@ window.onload = () => {
 
       // Append button to pastSearches element
       pastSearches.appendChild(newCityButton);
-      });
-    }
+    });
   }
 };
 
@@ -144,8 +142,7 @@ function handleSearchFormSubmit (event) {
   // Initiates function for local storage
   saveToLocalStorage(search);
 
-
-  // Save to local storage, function is within the form submit as it had variables that were outside of the scope
+  // Save to local storage, function is within the form submit as it had var that were outside of the scope
   function saveToLocalStorage(search) {
 
     // Check if the search is empty or invalid
@@ -186,8 +183,6 @@ function handleSearchFormSubmit (event) {
       localStorage.setItem("storedCities", JSON.stringify(storedCities));
     }
 
-    // Alert if city is submitted empty or with an invalid city
-
     // Classes to make weather dashboard visible after pressing search
     document.getElementById('city-search').classList.remove('before-search');
     document.getElementById('weather-information').classList.remove('hidden');
@@ -197,4 +192,17 @@ function handleSearchFormSubmit (event) {
 }
 
 // Event lister upon submitting the search form
+const searchForm = document.querySelector('#form');
 searchForm.addEventListener('submit', handleSearchFormSubmit);
+
+// Event listener for appended buttons
+const pastSearches = document.getElementById('past-searches');
+pastSearches.addEventListener('click', function (event) {
+  if (event.target.tagName === 'BUTTON') {
+    // Get the city name from the button's text content
+    var cityName = event.target.textContent;
+
+    // Trigger a new search based on the captured city name
+    fetchLocation(cityName);
+  }
+});
