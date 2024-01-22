@@ -113,13 +113,13 @@ function handleSearchFormSubmit (event) {
 // Save to local storage
 function saveToLocalStorage(search) {
   var newCity = JSON.stringify(search);
-  var previouslySearched = localStorage.getItem("searchedCity");
+  var previouslySearched = JSON.parse(localStorage.getItem("storedCities"));
 
   var pastSearches = document.getElementById('past-searches');
 
   if (newCity !== previouslySearched) {
     // Save new city to local storage
-    localStorage.setItem("searchedCity", newCity);
+    var savedCities = localStorage.setItem("storedCities", newCity) || [];
 
     // Create a button for the new city
     const newCityButton = document.createElement('button');
