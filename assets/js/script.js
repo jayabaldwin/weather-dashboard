@@ -36,7 +36,7 @@ function fetchLocation(search) {
       console.log(weatherData);
     })
     .catch(function (error) {
-      alert("Unfortunately we couldn't find data for that city.")
+      alert("Unfortunately we couldn't find data for that city, please enter a valid city name.")
       console.log(error);
       
     });
@@ -147,6 +147,12 @@ function handleSearchFormSubmit (event) {
 
   // Save to local storage, function is within the form submit as it had variables that were outside of the scope
   function saveToLocalStorage(search) {
+
+    // Check if the search is empty or invalid
+    if (!search.trim()) {
+      return;
+    }
+
     // City name holds the search value 
     // Gets first character and capitalises it
     // Appends the rest of the string starting from character 1 to the uppercase letter
