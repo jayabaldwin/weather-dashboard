@@ -53,27 +53,30 @@ function saveToLocalStorage(search) {
   // An empty array will be created upon the first search when there is nothing in storage --> []
   let storedCities = JSON.parse(localStorage.getItem("storedCities")) || [];
 
+
   // Check if the city name is not already in the array
-  // Create a button for the new city
-  var pastSearches = document.getElementById('past-searches');
+  if (!storedCities.includes(cityName)) {
+    // Create a button for the new city
+    var pastSearches = document.getElementById('past-searches');
 
-  const newCityButton = document.createElement('button');
-  newCityButton.classList.add('new-button');
-  newCityButton.textContent = cityName;
+    const newCityButton = document.createElement('button');
+    newCityButton.classList.add('new-button');
+    newCityButton.textContent = cityName;
 
-  // Add an event listener to the button to fetch data from localStorage
-  newCityButton.addEventListener('click', function () {
-    fetchLocation(search);
-  });
+    // Add an event listener to the button to fetch data from localStorage
+    newCityButton.addEventListener('click', function () {
+      fetchLocation(search);
+    });
 
-  // Append button to pastSearches element
-  pastSearches.appendChild(newCityButton);
+    // Append button to pastSearches element
+    pastSearches.appendChild(newCityButton);
 
-  // Add the new city to the array
-  storedCities.push(cityName);
+    // Add the new city to the array
+    storedCities.push(cityName);
 
-  // Save the updated array to local storage
-  localStorage.setItem("storedCities", JSON.stringify(storedCities));
+    // Save the updated array to local storage
+    localStorage.setItem("storedCities", JSON.stringify(storedCities));
+  }
 };
 
 // Sets up ability to update each forecast day without repetition
