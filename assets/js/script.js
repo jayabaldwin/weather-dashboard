@@ -38,6 +38,7 @@ function fetchLocation(search) {
     .catch(function (error) {
       alert("Unfortunately we couldn't find data for that city.")
       console.log(error);
+      
     });
   };
 
@@ -47,13 +48,13 @@ function updateWeatherElement(id, label, value) {
   document.getElementById(id).innerHTML = `${label} ${value}`;
 }
 
-// Data collected from the object
+// Data collected from the API
 function weatherResults(weatherData) {
 
   // Update current day
   var tempRoundUp = Math.ceil(weatherData.list[0].main.temp); // temp is rounded up to nearest degree
-  var windspeed = Math.ceil((weatherData.list[0].wind.speed)*3.6) // update to km/hr
-  var dateFormat = dayjs(weatherData.list[0].dt_txt).format('MMM D, YYYY'); // format the date
+  var windspeed = Math.ceil((weatherData.list[0].wind.speed)*3.6) // converted from m/s to km/hr
+  var dateFormat = dayjs(weatherData.list[0].dt_txt).format('MMM D, YYYY'); // formats the date, without the time
 
   updateWeatherElement('city-date', '', `${weatherData.city.name} (${dateFormat})`);
   updateWeatherElement('temp-0', 'Temperature:', `${tempRoundUp}°C`);
@@ -64,11 +65,13 @@ function weatherResults(weatherData) {
 
   // Update subsequent days
   for (let i = 1; i <= 4; i++) {
+    // The response is 40 items (8/day), therefore i is incremented by 8 to generate the following days data
+    // i starts from 1 as the current day [0] data has already been displayed, so must start with the 8th index
     const index = i * 8;
     
     var tempRoundUp = Math.ceil(weatherData.list[index].main.temp); // temp is rounded up to nearest degree
-    var windspeed = Math.ceil((weatherData.list[index].wind.speed)*3.6) // update to km/hr
-    var dateFormat = dayjs(weatherData.list[index].dt_txt).format('MMM D, YYYY'); // format the date
+    var windspeed = Math.ceil((weatherData.list[index].wind.speed)*3.6) // converted from m/s to km/hr
+    var dateFormat = dayjs(weatherData.list[index].dt_txt).format('MMM D, YYYY'); // formats the date, without the time
     
     updateWeatherElement(`day-${i}-date`, '', `${dateFormat}`);
     updateWeatherElement(`temp-${i}`, 'Temp:', `${tempRoundUp}°C`);
@@ -104,6 +107,32 @@ function currentDayImage(weatherCondition) {
   }
 }
 
+// On loading the page checks if theres already cities in local storage
+// Appends corresponding buttons if there is
+// These buttons remain hidden until 'search' has been clicked
+window.onload = () => {
+  // Check if there is something in localStorage with the key "storedCities"
+  if (localStorage.getItem("storedCities")) {
+    // Retrieve the array of stored cities
+    var storedCities = JSON.parse(localStorage.getItem("storedCities"));
+
+    // Get the element where you want to append the buttons
+    var pastSearches = document.getElementById('past-searches');
+
+    if (search !== '') {
+      // Loop through the array and create a button for each city
+    storedCities.forEach(function(value) {
+      const newCityButton = document.createElement('button');
+      newCityButton.classList.add('new-button');
+      newCityButton.textContent = value;
+
+      // Append button to pastSearches element
+      pastSearches.appendChild(newCityButton);
+      });
+    }
+  }
+};
+
 // Submission of form
 function handleSearchFormSubmit (event) {
   event.preventDefault();
@@ -116,10 +145,12 @@ function handleSearchFormSubmit (event) {
   saveToLocalStorage(search);
 
 
-  // Save to local storage
+  // Save to local storage, function is within the form submit as it had variables that were outside of the scope
   function saveToLocalStorage(search) {
-    // City searches saved to an array
-    let cityName = search;
+    // City name holds the search value 
+    // Gets first character and capitalises it
+    // Appends the rest of the string starting from character 1 to the uppercase letter
+    let cityName = search.charAt(0).toUpperCase() + search.slice(1);
   
     // Retrieving stored cities from local storage and converts from a string into an array
     // An empty array will be created upon the first search when there is nothing in storage --> []
@@ -132,7 +163,7 @@ function handleSearchFormSubmit (event) {
   
       const newCityButton = document.createElement('button');
       newCityButton.classList.add('new-button');
-      newCityButton.textContent = search;
+      newCityButton.textContent = cityName;
   
       // Add an event listener to the button to fetch data from localStorage
       newCityButton.addEventListener('click', function() {
@@ -149,16 +180,14 @@ function handleSearchFormSubmit (event) {
       localStorage.setItem("storedCities", JSON.stringify(storedCities));
     }
 
-  //   if (cityName == '' || cityName === in || city)
-  // }
-
     // Alert if city is submitted empty or with an invalid city
 
     // Classes to make weather dashboard visible after pressing search
     document.getElementById('city-search').classList.remove('before-search');
     document.getElementById('weather-information').classList.remove('hidden');
     document.getElementById('separator').classList.remove('hidden');
-}
+    document.getElementById('past-searches').classList.remove('hidden');
+  }
 }
 
 // Event lister upon submitting the search form
