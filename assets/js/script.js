@@ -36,6 +36,7 @@ function fetchLocation(search) {
       console.log(weatherData);
     })
     .catch(function (error) {
+      alert("Unfortunately we couldn't find data for that city.")
       console.log(error);
     });
   };
@@ -107,36 +108,57 @@ function currentDayImage(weatherCondition) {
 function handleSearchFormSubmit (event) {
   event.preventDefault();
   var search = event.target[0].value;
+  
+  // Initiates weather data based on you search
   fetchLocation(search);
+
+  // Initiates function for local storage
   saveToLocalStorage(search);
 
-// Save to local storage
-function saveToLocalStorage(search) {
-  var newCity = JSON.stringify(search);
-  var previouslySearched = JSON.parse(localStorage.getItem("storedCities"));
 
-  var pastSearches = document.getElementById('past-searches');
+  // Save to local storage
+  function saveToLocalStorage(search) {
+    // City searches saved to an array
+    let cityName = search;
+  
+    // Retrieving stored cities from local storage and converts from a string into an array
+    // An empty array will be created upon the first search when there is nothing in storage --> []
+    let storedCities = JSON.parse(localStorage.getItem("storedCities")) || [];
+  
+    // Check if the city name is not already in the array
+    if (!storedCities.includes(cityName)) {
+      // Create a button for the new city
+      var pastSearches = document.getElementById('past-searches');
+  
+      const newCityButton = document.createElement('button');
+      newCityButton.classList.add('new-button');
+      newCityButton.textContent = search;
+  
+      // Add an event listener to the button to fetch data from localStorage
+      newCityButton.addEventListener('click', function() {
+        fetchLocation(search);
+      });
+  
+      // Append button to pastSearches element
+      pastSearches.appendChild(newCityButton);
+  
+      // Add the new city to the array
+      storedCities.push(cityName);
+  
+      // Save the updated array to local storage
+      localStorage.setItem("storedCities", JSON.stringify(storedCities));
+    }
 
-  if (newCity !== previouslySearched) {
-    // Save new city to local storage
-    var savedCities = localStorage.setItem("storedCities", newCity) || [];
+  //   if (cityName == '' || cityName === in || city)
+  // }
 
-    // Create a button for the new city
-    const newCityButton = document.createElement('button');
-    newCityButton.classList.add('new-button');
-    newCityButton.textContent = search;
+    // Alert if city is submitted empty or with an invalid city
 
-    // Append button to pastSearches element
-    pastSearches.appendChild(newCityButton);
-  }
+    // Classes to make weather dashboard visible after pressing search
+    document.getElementById('city-search').classList.remove('before-search');
+    document.getElementById('weather-information').classList.remove('hidden');
+    document.getElementById('separator').classList.remove('hidden');
 }
-
-  // Alert if city is submitted empty or with an invalid city
-
-  // Classes to make weather dashboard visible after pressing search
-  document.getElementById('city-search').classList.remove('before-search');
-  document.getElementById('weather-information').classList.remove('hidden');
-  document.getElementById('separator').classList.remove('hidden');
 }
 
 // Event lister upon submitting the search form
