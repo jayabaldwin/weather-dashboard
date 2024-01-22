@@ -32,6 +32,36 @@ function fetchLocation(search) {
     });
   };
 
+// function fetchLocation(search) {
+//   let cityWorks = false;
+//   var apiUrl = `${baseUrl}/geo/1.0/direct?q=${search}&limit=5&units=metric&appid=${apiKey}`;
+//   fetch(apiUrl)
+//     .then(function (res) {
+//       return res.json();
+//     })
+//     .then(function (data) {
+//       console.log('data', data);
+//       var lat = data[0].lat;
+//       var lon = data[0].lon;
+//       var weatherApiUrl = `${baseUrl}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+//       cityWorks = true;
+//       return fetch(weatherApiUrl);
+//     })
+//     .then(function (res) {
+//       return res.json();
+//     })
+//     .then(function (weatherData) {
+//       if(cityWorks){
+//         weatherResults (weatherData);
+//       }
+//       console.log(weatherData);
+//     })
+//     .catch(function (error) {
+//       alert("Unfortunately we couldn't find data for that city, please enter a valid city name.")
+//       console.log(error);
+//     });
+//   };
+
 
 // Sets up ability to update each forecast day without repetition
 function updateWeatherElement(id, label, value) {
