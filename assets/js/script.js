@@ -1,13 +1,3 @@
-// YOURE JUST GRABBING DATA FROM THE API AND DISPLAYING IT
-// STOP OVERTHINKING, YOU GOT THIS!
-
-// HTML Element
-// const searchInput = document.getElementById('inputText');
-// const searchButton = document.getElementById('search-btn');
-// const pastSearches = document.getElementById('past-searches');
-// const searchForm = document.querySelector('#form');
-// var search = '';
-
 // API Key
 var apiKey = "735ee00c033a0c203ee912145178a36b";
 var baseUrl = "https://api.openweathermap.org";
@@ -201,6 +191,9 @@ pastSearches.addEventListener('click', function (event) {
   if (event.target.tagName === 'BUTTON') {
     // Get the city name from the button's text content
     var cityName = event.target.textContent;
+
+    // Prevent form submission
+    event.preventDefault();
 
     // Trigger a new search based on the captured city name
     fetchLocation(cityName);
