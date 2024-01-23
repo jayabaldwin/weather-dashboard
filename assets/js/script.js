@@ -189,11 +189,15 @@ searchForm.addEventListener('submit', handleSearchFormSubmit);
 const pastSearches = document.getElementById('past-searches');
 pastSearches.addEventListener('click', function (event) {
   if (event.target.tagName === 'BUTTON') {
-    // Get the city name from the button's text content
-    var cityName = event.target.textContent;
+
+    // Prevent event bubbling
+    event.stopPropagation();
 
     // Prevent form submission
     event.preventDefault();
+
+    // Get the city name from the button's text content
+    var cityName = event.target.textContent;
 
     // Trigger a new search based on the captured city name
     fetchLocation(cityName);
